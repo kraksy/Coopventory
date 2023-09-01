@@ -1,0 +1,9 @@
+name: Coopventory
+version: '${project.version}'
+main: io.github.kraksy.coopventory.Coopventory
+api-version: '1.20'
+load: STARTUP
+commands:
+  gui:
+    description: testing shit
+    usage: /gui
