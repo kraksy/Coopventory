@@ -11,11 +11,7 @@ public class sendResourcePack implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
 
-        // TODO make custom items for gui
-
-
         Player player = event.getPlayer();
-        player.setResourcePack();
 
     }
 }

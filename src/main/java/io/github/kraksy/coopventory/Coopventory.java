@@ -13,6 +13,8 @@ public final class Coopventory extends JavaPlugin {
         logger.info(">> Coopventory <<");
         getServer().getPluginManager().registerEvents(new PlayerInventory(), this);
         getServer().getPluginManager().registerEvents(new sendResourcePack(), this);
+        getServer().getPluginManager().registerEvents(new clickEventCancellation(), this);
+        getServer().getPluginManager().registerEvents(new CustomCoopCrafting(), this);
         Objects.requireNonNull(this.getCommand("gui")).setExecutor(new commands());
         logger.info(">> loaded <<");
     }
