@@ -12,6 +12,6 @@ public class sendResourcePack implements Listener {
     public void onJoin(PlayerJoinEvent event){
 
         Player player = event.getPlayer();
-
+        //player.setResourcePack();
     }
 }

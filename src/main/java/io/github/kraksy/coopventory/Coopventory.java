@@ -1,5 +1,6 @@
 package io.github.kraksy.coopventory;
 
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
