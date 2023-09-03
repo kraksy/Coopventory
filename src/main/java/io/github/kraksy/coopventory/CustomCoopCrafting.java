@@ -7,9 +7,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
@@ -22,12 +23,28 @@ public class CustomCoopCrafting implements Listener {
         Action action = event.getAction();
         ItemStack clickedItem = new ItemStack(Objects.requireNonNull(event.getClickedBlock()).getType());
         ItemStack targetItem = new ItemStack(Material.CRAFTING_TABLE);
-        ItemMeta itemMeta = clickedItem.getItemMeta();
-        itemMeta.setCustomModelData(1);
+        Block block = event.getClickedBlock();
 
         if (action.isRightClick() && clickedItem.equals(targetItem)){
             player.sendMessage(Component.text("block clicked"));
-            event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void getItemInCrafting(PrepareItemCraftEvent event){
+
+        CraftingInventory craftingInventory = event.getInventory();
+        ItemStack[] items = craftingInventory.getContents();
+
+        // TODO get items from crafting table , player should place just one item
+
+
+    }
+
+    public void saveConfig(){
+
+        // TODO create and safe int into config
+
+
     }
 }

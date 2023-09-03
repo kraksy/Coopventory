@@ -20,6 +20,7 @@ public final class Coopventory extends JavaPlugin {
         logger.info(">> loaded <<");
     }
 
+
     @Override
     public void onDisable() {
         System.out.println("seeya");
