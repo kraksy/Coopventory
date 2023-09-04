@@ -2,7 +2,7 @@ package io.github.kraksy.coopventory;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +13,9 @@ import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
+import java.util.logging.Logger;
+
+import static org.bukkit.Bukkit.getLogger;
 
 public class CustomCoopCrafting implements Listener {
 
@@ -23,7 +26,6 @@ public class CustomCoopCrafting implements Listener {
         Action action = event.getAction();
         ItemStack clickedItem = new ItemStack(Objects.requireNonNull(event.getClickedBlock()).getType());
         ItemStack targetItem = new ItemStack(Material.CRAFTING_TABLE);
-        Block block = event.getClickedBlock();
 
         if (action.isRightClick() && clickedItem.equals(targetItem)){
             player.sendMessage(Component.text("block clicked"));
@@ -35,16 +37,35 @@ public class CustomCoopCrafting implements Listener {
 
         CraftingInventory craftingInventory = event.getInventory();
         ItemStack[] items = craftingInventory.getContents();
+        HumanEntity[] players = event.getViewers().toArray(new HumanEntity[0]);
 
-        // TODO get items from crafting table , player should place just one item
+        saveConfig(items, players);
+    }
 
+    public void saveConfig(ItemStack[] items, HumanEntity[] players){
+
+        Logger logger = getLogger();
+
+        // when the errors drop im going to fucking krill myself B )
+        for (ItemStack itemStack : items) {
+            if (itemStack != null) {
+                logger.info("works");
+            }
+        }
+
+        for (HumanEntity player : players){
+            if (player != null){
+                player.sendMessage(Component.text("works"));
+            }
+        }
 
     }
 
-    public void saveConfig(){
+    public void sendConfig(){
 
-        // TODO create and safe int into config
-
+        //todo send players all items in crafting table and sync
+        //todo it should be done after that T T
+        //todo maybe im gonna need LAST event for finishing the crafting
 
     }
 }
