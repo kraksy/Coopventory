@@ -4,13 +4,16 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -61,7 +64,15 @@ public class CustomCoopCrafting implements Listener {
 
     }
 
-    public void sendConfig(){
+    @EventHandler
+    public void playerCrafting(CraftItemEvent event){
+
+        Player player = (Player) event.getWhoClicked();
+        Event.@NotNull Result item = event.getResult();
+
+        // 4 rows today B ]
+
+
 
         //todo send players all items in crafting table and sync
         //todo it should be done after that T T
