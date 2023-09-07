@@ -57,10 +57,15 @@ public class CustomCoopCrafting implements Listener {
 
         Logger logger = getLogger();
 
+        //todo need to get array from list , and then send crafting array to specific player.
+
+
         // when the errors drop im going to fucking krill myself B )
+
         for (ItemStack itemStack : items) {
             if (itemStack != null) {
-                items.
+                // send player the crafting array
+                sendPlayer();
             }
         }
 
@@ -69,6 +74,18 @@ public class CustomCoopCrafting implements Listener {
                 player.sendMessage(Component.text("works"));
             }
         }
+
+    }
+
+    public void sendPlayer(Player player, CraftingInventory craftingInventory, List<ItemStack[]> itemStacks){
+
+        gitemStacks.get()
+
+
+
+        // todo merge arrays and send to player
+        craftingInventory.setMatrix();
+
 
     }
 
