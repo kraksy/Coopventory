@@ -14,7 +14,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -42,6 +45,11 @@ public class CustomCoopCrafting implements Listener {
         ItemStack[] items = craftingInventory.getContents();
         HumanEntity[] players = event.getViewers().toArray(new HumanEntity[0]);
 
+        List<@Nullable ItemStack[]> itemStackList = new ArrayList<>();
+
+        itemStackList.add(craftingInventory.getContents());
+
+
         saveConfig(items, players);
     }
 
@@ -52,7 +60,7 @@ public class CustomCoopCrafting implements Listener {
         // when the errors drop im going to fucking krill myself B )
         for (ItemStack itemStack : items) {
             if (itemStack != null) {
-                logger.info("works");
+                items.
             }
         }
 
