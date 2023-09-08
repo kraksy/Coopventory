@@ -3,6 +3,7 @@ package io.github.kraksy.coopventory;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -24,54 +25,47 @@ import java.util.logging.Logger;
 import static org.bukkit.Bukkit.getLogger;
 
 public class CustomCoopCrafting implements Listener {
-
-    @EventHandler
-    public void onBlockClick(PlayerInteractEvent event){
-
-        Player player = event.getPlayer();
-        Action action = event.getAction();
-        ItemStack clickedItem = new ItemStack(Objects.requireNonNull(event.getClickedBlock()).getType());
-        ItemStack targetItem = new ItemStack(Material.CRAFTING_TABLE);
-
-        if (action.isRightClick() && clickedItem.equals(targetItem)){
-            player.sendMessage(Component.text("block clicked"));
-        }
-    }
-
     @EventHandler
     public void getItemInCrafting(PrepareItemCraftEvent event){
-
         CraftingInventory craftingInventory = event.getInventory();
-        ItemStack[] items = craftingInventory.getContents();
-        HumanEntity[] players = event.getViewers().toArray(new HumanEntity[0]);
 
-        List<@Nullable ItemStack[]> itemStackList = new ArrayList<>();
+        ItemStack[] matrix = craftingInventory.getMatrix();
 
-        itemStackList.add(craftingInventory.getContents());
+        List<Player> playerList = new ArrayList<>();
+        List<ItemStack[]> itemStackList = new ArrayList<>();
+
+        itemStackList.add(items);
+        playerList.add((Player) event.getViewers());
+
+        //todo maybe make a for loop where it will look at every slot and it will make a array with where are the items
 
 
-        saveConfig(items, players);
+
+
+        mergeItemStack(itemStackList, craftingInventory);
+        saveConfig(playerList, craftingInventory);
     }
 
-    public void saveConfig(ItemStack[] items, HumanEntity[] players){
-
-        Logger logger = getLogger();
-
-        //todo need to get array from list , and then send crafting array to specific player.
-
-
-        // when the errors drop im going to fucking krill myself B )
-
-        for (ItemStack itemStack : items) {
-            if (itemStack != null) {
-                // send player the crafting array
-                sendPlayer();
+    public void mergeItemStack(List<ItemStack[]> itemStacks, CraftingInventory craftingInventory){
+        for (ItemStack[] items : itemStacks){
+            for (ItemStack itemStack : items){
+                //todo set specific item to its place
+                craftingInventory.setItem(); // set item in its place
             }
         }
 
-        for (HumanEntity player : players){
+        //todo send the geral crafting table to all the players
+    }
+
+    public void saveConfig(List<Player> playerList, CraftingInventory craftingInventory){
+
+        Logger logger = getLogger();
+
+        // for every player send merged list of items , send it like crafting inventory
+        for (HumanEntity player : playerList){
             if (player != null){
-                player.sendMessage(Component.text("works"));
+                itemStacks.get(i);
+
             }
         }
 
@@ -79,13 +73,7 @@ public class CustomCoopCrafting implements Listener {
 
     public void sendPlayer(Player player, CraftingInventory craftingInventory, List<ItemStack[]> itemStacks){
 
-        gitemStacks.get()
-
-
-
-        // todo merge arrays and send to player
         craftingInventory.setMatrix();
-
 
     }
 
