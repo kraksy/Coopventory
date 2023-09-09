@@ -29,7 +29,16 @@ public class CustomCoopCrafting implements Listener {
     public void getItemInCrafting(PrepareItemCraftEvent event){
         CraftingInventory craftingInventory = event.getInventory();
 
-        ItemStack[] matrix = craftingInventory.getMatrix();
+        // 2D array for the crafting layout , stolen from chatgpt
+        ItemStack[][] matrix = new ItemStack[3][3];
+
+        for (int row = 0; row < 3; row++){
+            for (int col = 0; col < 3; col++){
+                int slot = row * 3 + col;
+                ItemStack item = craftingInventory.getItem(slot);
+                matrix[row][col] = item;
+            }
+        }
 
         List<Player> playerList = new ArrayList<>();
         List<ItemStack[]> itemStackList = new ArrayList<>();
