@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -18,13 +19,13 @@ import java.util.logging.Logger;
 import static org.bukkit.Bukkit.getLogger;
 
 public class CustomCoopCrafting implements Listener {
+
     @EventHandler
     public void getItemInCrafting(PrepareItemCraftEvent event){
         CraftingInventory craftingInventory = event.getInventory();
         List<Player> playerList = new ArrayList<>();
         playerList.add((Player) event.getViewers());
 
-        sendCraftingInventory();
     }
 
     public void getSlot(CraftingInventory craftingInventory){
@@ -40,6 +41,15 @@ public class CustomCoopCrafting implements Listener {
 
     }
 
+    @EventHandler
+    public void onCraftingTableClick(PlayerInteractEvent event)
+    {
+        // interaction with crafting table will call inventory
+
+
+
+    }
+
     public void sendCraftingInventory(List<Player> playerList, CraftingInventory craftingInventory){
         Logger logger = getLogger();
 
@@ -48,7 +58,6 @@ public class CustomCoopCrafting implements Listener {
 
                 getSlot(craftingInventory);
 
-                player.sendMessage();
 
             }
         }
